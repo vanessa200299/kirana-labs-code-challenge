@@ -1,0 +1,30 @@
+
+<div class="container">
+    <div *ngIf="persons.length <= 0; else personsList">
+      <app-pick-csv-file (fileSelected)="onLoadCSVFile($event)">
+      </app-pick-csv-file>
+      <app-welcome-message></app-welcome-message>
+    </div>
+    <ng-template #personsList>
+      <app-person-table [data]="persons">
+        <app-csv-file-info
+          [peopleNumber]="persons.length"
+          [duplicatedRows]="duplicatedRows"
+        >
+        </app-csv-file-info>
+      </app-person-table>
+  
+      <div class="fab-container">
+        <button
+          mat-fab
+          color="warn"
+          class="mat-fab-bottom-right"
+          title="Choose another file"
+          (click)="reset()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+</div>
+  
