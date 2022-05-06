@@ -1,0 +1,21 @@
+<input
+  #csvInput
+  hidden="true"
+  type="file"
+  onclick="this.value=null"
+  (change)="onSelectFileChange($event)"
+  accept=".csv"
+/>
+
+
+<div class="fab-container">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    class="mat-fab-bottom-right"
+    (click)="csvInput.click()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
