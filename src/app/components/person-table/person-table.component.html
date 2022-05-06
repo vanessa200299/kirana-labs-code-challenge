@@ -1,0 +1,60 @@
+<mat-card class="example-card">
+  <mat-card-title>Result</mat-card-title>
+  <mat-card-content>
+    <div>
+      <ng-content></ng-content>
+      <table mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <!-- <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+        </ng-container> -->
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let person">{{ person.name }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td
+            mat-cell
+            *matCellDef="let person"
+            [ngClass]="isInvalidMail(person.email) ? 'invalid_row' : ''"
+          >
+            {{ person.email }}
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td
+            mat-cell
+            *matCellDef="let person"
+            [ngClass]="isInvalidPhone(person.phone) ? 'invalid_row' : ''"
+          >
+            {{ person.phone }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          [ngClass]="duplicatedRow(row) ? 'duplicated_row' : ''"
+        ></tr>
+      </table>
+
+      <mat-paginator
+        [length]="100"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
